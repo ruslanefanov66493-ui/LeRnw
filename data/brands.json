@@ -1,0 +1,19 @@
+{
+  "brands": {
+    "vlata": {
+      "name": "Влата",
+      "fullName": "Центр ритуальных услуг «Влата»",
+      "schema": "FuneralHome",
+      "path": "/",
+      "accent": "#d4af37"
+    },
+    "danila": {
+      "name": "Данила Мастер",
+      "fullName": "Данила Мастер — производство памятников",
+      "schema": "LocalBusiness",
+      "path": "/danila-master/",
+      "accent": "#a8c4b0"
+    },
+    "partnership": "При полном комплексе услуг у Влаты — купон 5% на изделия Данила Мастер. Организации раздельные."
+  }
+}

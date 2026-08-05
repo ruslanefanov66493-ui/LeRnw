@@ -1,0 +1,27 @@
+# OS / editor
+.DS_Store
+Thumbs.db
+*.swp
+.vscode/
+.idea/
+
+# Source materials (not for Vercel)
+*.docx
+~$*
+Варианты установок/
+Гравировка на памятники/
+Наши работы/
+О компании/
+Похоронка/
+Товар/
+
+# Heavy / unused extras
+images/hero-bg-source.png
+images/hero-bg.png
+images/installations/
+preview.html
+animations.css
+package.json
+CONTENT-MAP.md
+README.md
+BRANDS.md
