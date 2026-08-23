@@ -23,7 +23,7 @@ document.addEventListener('click', function (e) {
 // CTA / order buttons → phone
 document.querySelectorAll('.cta-button, .service-button').forEach(button => {
     button.addEventListener('click', function () {
-        const phoneNumber = '+7 (XXX) XXX-XX-XX';
+        const phoneNumber = '+7 (927) 154-09-50';
         if (confirm(`Позвонить по номеру ${phoneNumber}?`)) {
             window.location.href = `tel:${phoneNumber.replace(/\D/g, '')}`;
         }

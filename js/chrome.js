@@ -51,7 +51,7 @@
           <li class="nav-item"><a href="${href('danila-master/contacts.html')}" class="nav-link ${page === 'danila-contacts' ? 'active' : ''}">Контакты</a></li>
         </ul>
       </nav>`;
-    phone = `<a href="tel:+70000000000" class="header-phone"><i class="fas fa-phone"></i><span>Заказать расчёт</span></a>`;
+    phone = `<a href="tel:+789093316877" class="header-phone"><i class="fas fa-phone"></i><span>Заказать расчёт</span></a>`;
     footerBrand = `
       <a href="${href('danila-master/index.html')}" class="logo logo-footer logo-danila">
         <span class="logo-name">Данила Мастер</span>
@@ -84,7 +84,7 @@
       "description": "Производство и установка памятников из гранита и мрамора",
       "url": typeof location !== 'undefined' ? location.origin + '/' + base + 'danila-master/' : '',
       "areaServed": "Ершов, Саратовская область",
-      "telephone": "+7XXXXXXXXXX"
+      "telephone": "+789093316877"
     };
   } else {
     logo = `
@@ -112,7 +112,7 @@
           <li class="nav-item"><a href="${href('contacts.html')}" class="nav-link ${page === 'contacts' ? 'active' : ''}">Контакты</a></li>
         </ul>
       </nav>`;
-    phone = `<a href="tel:+70000000000" class="header-phone"><i class="fas fa-phone"></i><span>Круглосуточно</span></a>`;
+    phone = `<a href="tel:+789271540950" class="header-phone"><i class="fas fa-phone"></i><span>Круглосуточно</span></a>`;
     footerBrand = `
       <a href="${href('index.html')}" class="logo logo-footer logo-vlata">
         <span class="logo-name">Влата</span>
@@ -146,7 +146,7 @@
       "name": "Центр ритуальных услуг Влата",
       "description": "Ритуальные услуги в г. Ершове и Ершовском районе",
       "areaServed": "Ершов, Ершовский район, Саратовская область",
-      "telephone": "+7XXXXXXXXXX",
+      "telephone": "+789603431891",
       "openingHours": "Mo-Su 00:00-24:00"
     };
   }
@@ -176,9 +176,9 @@
         <div class="footer-contacts">
           <h4>Контакты</h4>
           <ul>
-            <li><i class="fas fa-phone"></i><a href="tel:+70000000000">+7 (XXX) XXX-XX-XX</a></li>
-            <li><i class="fas fa-clock"></i><span>${isDanila ? 'По согласованию / ежедневно' : 'Круглосуточно, без выходных'}</span></li>
-            <li><i class="fas fa-envelope"></i><a href="mailto:${isDanila ? 'info@danila-master.ru' : 'info@vlata.ru'}">${isDanila ? 'info@danila-master.ru' : 'info@vlata.ru'}</a></li>
+            <li><i class="fas fa-phone"></i><a href="tel:${isDanila ? '+789093316877' : '+789603431891'}">${isDanila ? '+7 (909) 331-68-77' : '+7 (960) 343-18-91'}</a></li>
+            <li><i class="fas fa-clock"></i><span>${isDanila ? 'Ежедневно с 8:00 до 17:00' : 'Круглосуточно, без выходных'}</span></li>
+            <li><i class="fas fa-envelope"></i><a href="mailto:iva0281@yandex.ru">iva0281@yandex.ru</a></li>
             <li><i class="fas fa-map-marker-alt"></i><span>г. Ершов, Ершовский район</span></li>
           </ul>
         </div>
@@ -206,7 +206,8 @@
 
   document.querySelectorAll('.cta-button, .service-button, .btn-order').forEach((button) => {
     button.addEventListener('click', () => {
-      const phoneNum = '+7 (XXX) XXX-XX-XX';
+      const isDanilaPage = document.body.dataset.brand === 'danila';
+      const phoneNum = isDanilaPage ? '+7 (909) 331-68-77' : '+7 (927) 154-09-50';
       if (confirm(`Позвонить по номеру ${phoneNum}?`)) {
         window.location.href = `tel:${phoneNum.replace(/\D/g, '')}`;
       }
