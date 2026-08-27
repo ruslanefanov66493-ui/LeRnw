@@ -191,6 +191,43 @@ body {
     color: #222;
 }
 
+/* ========== Кнопка-гамбургер (моб. меню) ========== */
+.nav-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 44px;
+    height: 44px;
+    padding: 11px 9px;
+    background: transparent;
+    border: 1px solid rgba(212, 175, 55, 0.5);
+    border-radius: 4px;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.nav-toggle-bar {
+    display: block;
+    width: 100%;
+    height: 2px;
+    background: #d4af37;
+    border-radius: 2px;
+    transition: transform 0.25s ease, opacity 0.25s ease;
+}
+
+.header.is-open .nav-toggle-bar:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+}
+
+.header.is-open .nav-toggle-bar:nth-child(2) {
+    opacity: 0;
+}
+
+.header.is-open .nav-toggle-bar:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+}
+
 /* ========== Hero 1920×1080 ========== */
 .hero {
     position: relative;
@@ -678,28 +715,74 @@ body {
     }
 
     .header-inner {
-        flex-direction: column;
-        gap: 16px;
-        padding-top: 16px;
-        padding-bottom: 16px;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        padding-top: 14px;
+        padding-bottom: 14px;
+    }
+
+    .logo {
+        order: 1;
+        margin-right: auto;
+    }
+
+    .header-phone {
+        order: 2;
+        margin-left: 8px;
+        padding: 8px 14px;
+        font-size: 13px;
+    }
+
+    .nav-toggle {
+        display: inline-flex;
+        order: 3;
+    }
+
+    .navbar {
+        order: 4;
+        flex: 0 0 100%;
+        display: none;
+    }
+
+    .header.is-open .navbar {
+        display: block;
     }
 
     .nav-menu {
         flex-direction: column;
-        gap: 10px;
+        align-items: stretch;
+        gap: 0;
+        border-top: 1px solid #2a2a2a;
     }
 
-    .header-phone {
-        order: -1;
+    .nav-item {
+        border-bottom: 1px solid #2a2a2a;
+    }
+
+    .nav-link {
+        padding: 14px 4px;
+        justify-content: space-between;
+        border-bottom: none;
+    }
+
+    .nav-link.active {
+        border-bottom: none;
     }
 
     .hero {
-        min-height: calc(100vh - 160px);
+        min-height: 60vh;
         height: auto;
         max-height: none;
-        align-items: flex-start;
-        padding: 48px 0 80px;
-        background-position: center 55%;
+        align-items: center;
+        padding: 52px 0;
+        background-position: center 42%;
+    }
+
+    .slider-indicators {
+        bottom: 18px;
     }
 
     .hero-title {
@@ -736,8 +819,53 @@ body {
         background: #2a2a2a;
     }
 
+    .dropdown.is-expanded .dropdown-menu {
+        display: block;
+    }
+
+    .dropdown.is-expanded .nav-link i {
+        transform: rotate(180deg);
+    }
+
     .dropdown-menu a {
         color: #ddd;
         border-bottom-color: #3a3a3a;
+    }
+}
+
+/* ========== Small mobile ========== */
+@media (max-width: 480px) {
+    .container,
+    .header-inner,
+    .hero-inner,
+    .brand-bar-inner {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+
+    .logo-name {
+        font-size: 21px;
+    }
+
+    .header-phone span {
+        display: none;
+    }
+
+    .header-phone {
+        padding: 9px 12px;
+    }
+
+    .hero {
+        min-height: 54vh;
+        padding: 40px 0;
+        background-position: center 40%;
+    }
+
+    .hero-title {
+        font-size: 27px;
+    }
+
+    .brand-bar-note {
+        display: none;
     }
 }

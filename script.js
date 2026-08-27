@@ -1,36 +1,7 @@
-// Dropdown: click outside closes (mobile)
-const dropdowns = document.querySelectorAll('.dropdown');
-
-dropdowns.forEach(dropdown => {
-    dropdown.addEventListener('click', function (e) {
-        if (window.innerWidth <= 768) {
-            e.preventDefault();
-            const menu = this.querySelector('.dropdown-menu');
-            menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
-        }
-    });
-});
-
-document.addEventListener('click', function (e) {
-    if (!e.target.closest('.dropdown')) {
-        dropdowns.forEach(dropdown => {
-            const menu = dropdown.querySelector('.dropdown-menu');
-            if (menu) menu.style.display = 'none';
-        });
-    }
-});
-
-// CTA / order buttons → phone
-document.querySelectorAll('.cta-button, .service-button').forEach(button => {
-    button.addEventListener('click', function () {
-        const phoneNumber = '+7 (927) 154-09-50';
-        if (confirm(`Позвонить по номеру ${phoneNumber}?`)) {
-            window.location.href = `tel:${phoneNumber.replace(/\D/g, '')}`;
-        }
-    });
-});
-
-// Cards appear on scroll
+// Появление карточек услуг при прокрутке (главная страница).
+// Примечание: логика выпадающего меню и клика по кнопкам «Заказать»
+// вынесена в js/chrome.js, чтобы работать на всех страницах сайта
+// и не вызывать двойное подтверждение звонка.
 document.addEventListener('DOMContentLoaded', () => {
     const observer = new IntersectionObserver(
         (entries) => {

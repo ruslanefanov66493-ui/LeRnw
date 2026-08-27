@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# Укажите реальный домен сайта в строке ниже
+Sitemap: https://example.com/sitemap.xml

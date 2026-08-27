@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Замените https://example.com на реальный домен сайта -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <!-- Влата -->
+  <url><loc>https://example.com/index.html</loc><priority>1.0</priority></url>
+  <url><loc>https://example.com/about.html</loc><priority>0.8</priority></url>
+  <url><loc>https://example.com/funerals.html</loc><priority>0.8</priority></url>
+  <url><loc>https://example.com/works.html</loc><priority>0.7</priority></url>
+  <url><loc>https://example.com/monuments.html</loc><priority>0.7</priority></url>
+  <url><loc>https://example.com/contacts.html</loc><priority>0.9</priority></url>
+  <url><loc>https://example.com/pages/coffins.html</loc><priority>0.6</priority></url>
+  <url><loc>https://example.com/pages/church.html</loc><priority>0.6</priority></url>
+  <url><loc>https://example.com/pages/hall.html</loc><priority>0.6</priority></url>
+  <url><loc>https://example.com/pages/crosses.html</loc><priority>0.6</priority></url>
+  <url><loc>https://example.com/pages/transport.html</loc><priority>0.6</priority></url>
+  <url><loc>https://example.com/pages/wreaths.html</loc><priority>0.6</priority></url>
+  <url><loc>https://example.com/pages/granite.html</loc><priority>0.6</priority></url>
+  <url><loc>https://example.com/pages/metal.html</loc><priority>0.6</priority></url>
+  <url><loc>https://example.com/pages/engraving.html</loc><priority>0.6</priority></url>
+  <url><loc>https://example.com/pages/installation.html</loc><priority>0.6</priority></url>
+  <!-- Данила Мастер -->
+  <url><loc>https://example.com/danila-master/index.html</loc><priority>0.9</priority></url>
+  <url><loc>https://example.com/danila-master/about.html</loc><priority>0.7</priority></url>
+  <url><loc>https://example.com/danila-master/works.html</loc><priority>0.7</priority></url>
+  <url><loc>https://example.com/danila-master/contacts.html</loc><priority>0.8</priority></url>
+  <url><loc>https://example.com/danila-master/granite.html</loc><priority>0.6</priority></url>
+  <url><loc>https://example.com/danila-master/metal.html</loc><priority>0.6</priority></url>
+  <url><loc>https://example.com/danila-master/engraving.html</loc><priority>0.6</priority></url>
+  <url><loc>https://example.com/danila-master/installation.html</loc><priority>0.6</priority></url>
+</urlset>

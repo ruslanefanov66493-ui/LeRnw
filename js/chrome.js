@@ -83,8 +83,29 @@
       "name": "Данила Мастер",
       "description": "Производство и установка памятников из гранита и мрамора",
       "url": typeof location !== 'undefined' ? location.origin + '/' + base + 'danila-master/' : '',
+      "image": typeof location !== 'undefined' ? location.origin + '/' + base + 'images/danila/monuments/01.jpg' : '',
       "areaServed": "Ершов, Саратовская область",
-      "telephone": "+789093316877"
+      "telephone": "+789093316877",
+      "priceRange": "₽₽",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "ул. Кутузова, 38",
+        "addressLocality": "Ершов",
+        "addressRegion": "Саратовская область",
+        "addressCountry": "RU"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 51.361894,
+        "longitude": 48.268223
+      },
+      "hasMap": "https://yandex.ru/maps/org/danila_master/125287762138/",
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+        "opens": "08:00",
+        "closes": "17:00"
+      }
     };
   } else {
     logo = `
@@ -144,10 +165,26 @@
       "@context": "https://schema.org",
       "@type": "FuneralHome",
       "name": "Центр ритуальных услуг Влата",
-      "description": "Ритуальные услуги в г. Ершове и Ершовском районе",
+      "description": "Ритуальные услуги в г. Ершове и Ершовском районе: организация похорон, гробы, венки, кресты, перевозка, прощальный зал. Круглосуточно.",
+      "url": typeof location !== 'undefined' ? location.origin + '/' + base : '',
+      "image": typeof location !== 'undefined' ? location.origin + '/' + base + 'images/hero-bg.jpg' : '',
       "areaServed": "Ершов, Ершовский район, Саратовская область",
       "telephone": "+789603431891",
-      "openingHours": "Mo-Su 00:00-24:00"
+      "priceRange": "₽₽",
+      "openingHours": "Mo-Su 00:00-24:00",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "ул. Фрунзе, 18",
+        "addressLocality": "Ершов",
+        "addressRegion": "Саратовская область",
+        "addressCountry": "RU"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 51.352332,
+        "longitude": 48.270298
+      },
+      "hasMap": "https://yandex.ru/maps/org/vlata/176311151621/"
     };
   }
 
@@ -163,6 +200,11 @@
       ${logo}
       ${nav}
       ${phone}
+      <button class="nav-toggle" type="button" aria-label="Открыть меню" aria-controls="site-nav" aria-expanded="false">
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+      </button>
     </div>
   </header>`;
 
@@ -179,7 +221,7 @@
             <li><i class="fas fa-phone"></i><a href="tel:${isDanila ? '+789093316877' : '+789603431891'}">${isDanila ? '+7 (909) 331-68-77' : '+7 (960) 343-18-91'}</a></li>
             <li><i class="fas fa-clock"></i><span>${isDanila ? 'Ежедневно с 8:00 до 17:00' : 'Круглосуточно, без выходных'}</span></li>
             <li><i class="fas fa-envelope"></i><a href="mailto:iva0281@yandex.ru">iva0281@yandex.ru</a></li>
-            <li><i class="fas fa-map-marker-alt"></i><span>г. Ершов, Ершовский район</span></li>
+            <li><i class="fas fa-map-marker-alt"></i><span>${isDanila ? 'ул. Кутузова, 38, г. Ершов' : 'ул. Фрунзе, 18, г. Ершов'}</span></li>
           </ul>
         </div>
       </div>
@@ -198,11 +240,89 @@
   if (headerMount) headerMount.innerHTML = headerHTML;
   if (footerMount) footerMount.innerHTML = footerHTML;
 
+  // Мобильное меню: кнопка-гамбургер открывает/закрывает навигацию
+  const headerEl = headerMount ? headerMount.querySelector('.header') : null;
+  const navToggle = headerMount ? headerMount.querySelector('.nav-toggle') : null;
+  if (headerEl && navToggle) {
+    navToggle.addEventListener('click', () => {
+      const isOpen = headerEl.classList.toggle('is-open');
+      navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      navToggle.setAttribute('aria-label', isOpen ? 'Закрыть меню' : 'Открыть меню');
+    });
+  }
+
+  // Выпадающие подменю: на мобильных раскрываются по тапу, а не по наведению
+  if (headerMount) {
+    headerMount.querySelectorAll('.dropdown > .nav-link').forEach((link) => {
+      link.addEventListener('click', (e) => {
+        if (window.innerWidth <= 768) {
+          e.preventDefault();
+          link.parentElement.classList.toggle('is-expanded');
+        }
+      });
+    });
+  }
+
   // JSON-LD Organization
   const script = document.createElement('script');
   script.type = 'application/ld+json';
   script.textContent = JSON.stringify(schemaOrg);
   document.head.appendChild(script);
+
+  // ===== SEO-мета: geo, canonical, Open Graph, Twitter (на всех страницах) =====
+  (function injectSeoMeta() {
+    const head = document.head;
+    const siteName = isDanila ? 'Данила Мастер' : 'Центр ритуальных услуг «Влата»';
+    const lat = schemaOrg.geo ? schemaOrg.geo.latitude : 51.35;
+    const lon = schemaOrg.geo ? schemaOrg.geo.longitude : 48.27;
+    const descEl = document.querySelector('meta[name="description"]');
+    const description = descEl ? descEl.getAttribute('content') : schemaOrg.description || '';
+    const pageUrl = typeof location !== 'undefined' ? location.href.split('#')[0] : '';
+    const ogImage = schemaOrg.image || '';
+
+    function setMeta(attr, key, value) {
+      if (!value) return;
+      let el = head.querySelector(`meta[${attr}="${key}"]`);
+      if (!el) {
+        el = document.createElement('meta');
+        el.setAttribute(attr, key);
+        head.appendChild(el);
+      }
+      el.setAttribute('content', value);
+    }
+
+    // Тема мобильного браузера
+    setMeta('name', 'theme-color', '#121212');
+    // Гео-теги для локального SEO
+    setMeta('name', 'geo.region', 'RU-SAR');
+    setMeta('name', 'geo.placename', 'Ершов');
+    setMeta('name', 'geo.position', `${lat};${lon}`);
+    setMeta('name', 'ICBM', `${lat}, ${lon}`);
+    // Open Graph
+    setMeta('property', 'og:type', 'website');
+    setMeta('property', 'og:site_name', siteName);
+    setMeta('property', 'og:locale', 'ru_RU');
+    setMeta('property', 'og:title', document.title);
+    setMeta('property', 'og:description', description);
+    setMeta('property', 'og:url', pageUrl);
+    setMeta('property', 'og:image', ogImage);
+    // Twitter Card
+    setMeta('name', 'twitter:card', 'summary_large_image');
+    setMeta('name', 'twitter:title', document.title);
+    setMeta('name', 'twitter:description', description);
+    setMeta('name', 'twitter:image', ogImage);
+
+    // Canonical
+    if (pageUrl) {
+      let canonical = head.querySelector('link[rel="canonical"]');
+      if (!canonical) {
+        canonical = document.createElement('link');
+        canonical.setAttribute('rel', 'canonical');
+        head.appendChild(canonical);
+      }
+      canonical.setAttribute('href', pageUrl);
+    }
+  })();
 
   document.querySelectorAll('.cta-button, .service-button, .btn-order').forEach((button) => {
     button.addEventListener('click', () => {
